@@ -9,7 +9,6 @@ else:
 import numpy as np
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-#import fts
 from math import pi
 from scipy.signal import fftconvolve
 
@@ -17,22 +16,9 @@ from scipy.signal import fftconvolve
 
 class fpgui:
     #
-    # Computes and displays FP profiles 
+    # Compute and display FP profiles 
     #
     #
-
-    # units
-    hplanck = 6.626e-34 # m**2 kg /s    
-    clight=2.99792458e8 #m /s
-    eV = 1.602e-19 # J
-    mAA_to_m = 1e-13
-    nm_to_m = 1e-9
-    m_to_nm = 1e9
-    nm_to_pm = 1e3
-    rad_to_arcsec = 206265.
-    km_to_m = 1e3
-    m_to_arcsec = 1./(7.25e5)
-
     # plot window sizes 
     window_width = 8
     window_height= 4
@@ -44,11 +30,9 @@ class fpgui:
 
     def __init__(self, master):
 
-        # load data only once
+        # load data only once--
 
         self.al, self. at = self.get_atmostrans()
-        # solar intensity W/ (m2 ster m)
-        #self.atlas = fts.fts()
                
         self.master = master
         self.master.title("Febrey-Perot profiles")
@@ -212,9 +196,6 @@ class fpgui:
         lamb = np.linspace(lmin,lmax,5001)
         trans, shift = self.fp_profile( lamb, d, R, n0, vt, theta)
 
-        #ll = self.al.get()
-        #tt = self.at.get()
-        # interpolate atmospheric transmission
         ll = self.al
         tt =  self.at
         self.plot(lamb,trans,ll,tt,lmin,lmax)
